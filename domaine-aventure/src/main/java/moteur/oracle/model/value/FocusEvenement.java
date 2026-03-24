@@ -138,6 +138,6 @@ public enum FocusEvenement {
      * Current Context takes whatever is going on and
      * adds a new layer to it.
      */
-    CURRENT_CONTEXT;
+    CURRENT_CONTEXT
 
 }
