@@ -3,7 +3,7 @@ package aventure.solo.model;
 import aventure.solo.value.StatutObjectif;
 
 /**
- * Un objectif est le but que le personnage souhaite ou doit réaliser,
+ * Un objectif est la quête, la tache et la mission que le joueur personnage souhaite poursuivre,
  * Un objectif possède une description et un état.
  */
 public class Objectif {
