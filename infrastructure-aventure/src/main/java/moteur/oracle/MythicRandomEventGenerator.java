@@ -25,7 +25,7 @@ public class MythicRandomEventGenerator implements RandomEventGenerator {
     @Override
     public RandomEvent generate(List<Objectif> objectifs, List<Personnage> personnages) {
 
-        FocusEvenement focus = genererFocus(objectifs, personnages);
+        FocusEvenement focus = genererFocus();
         SignificationEvenement signification = genererSignification(focus);
         CibleEvenement cible = genererCibleEvenement( focus, objectifs, personnages);
 
@@ -59,7 +59,7 @@ public class MythicRandomEventGenerator implements RandomEventGenerator {
         return new SignificationEvenement(word1,word2);
     }
 
-    private FocusEvenement genererFocus(List<Objectif> objectifs, List<Personnage> personnages) {
+    private FocusEvenement genererFocus() {
         int roll = d100();
 
         if (roll <= 5) return FocusEvenement.REMOTE_EVENT;

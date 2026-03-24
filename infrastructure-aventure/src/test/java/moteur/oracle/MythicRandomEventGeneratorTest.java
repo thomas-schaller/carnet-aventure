@@ -4,9 +4,6 @@ import static org.mockito.Mockito.*;
 
 import aventure.solo.model.Objectif;
 import aventure.solo.model.Personnage;
-import fr.schaller.wordgenerator.application.usecase.GenerateWordUseCase;
-import fr.schaller.wordgenerator.domain.service.WordGeneratorService;
-import fr.schaller.wordgenerator.infrastructure.filesystem.FileSystemWordRepository;
 import fr.schaller.wordgenerator.infrastructure.spring.controller.WordController;
 import moteur.oracle.model.evenement.RandomEvent;
 import org.junit.jupiter.api.Test;
