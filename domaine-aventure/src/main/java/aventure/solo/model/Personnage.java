@@ -1,6 +1,7 @@
 package aventure.solo.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Personnage {
 
@@ -35,5 +36,17 @@ public class Personnage {
 
     public void ajouterHistorique(String event) {
         this.historique.add(event);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Personnage that = (Personnage) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
     }
 }

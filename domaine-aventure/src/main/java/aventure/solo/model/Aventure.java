@@ -4,12 +4,16 @@ import aventure.solo.value.ChaosFactor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Aventure {
+    private UUID id;
     private final String titre;
     private final List<Scene> scenes = new ArrayList<>();
     private final List<Objectif> objectifs = new ArrayList<>();
     private final List<Personnage> personnages = new ArrayList<>() ;
+    String notes;
 
     public String getNotes() {
         return notes;
@@ -19,7 +23,7 @@ public class Aventure {
         this.notes = notes;
     }
 
-    String notes;
+
 
     public Aventure(String titre) {
         this.titre = titre;
@@ -64,7 +68,12 @@ public class Aventure {
     }
 
     public void addPersonnage(Personnage p) {
-        this.personnages.add(p);
+        AtomicInteger nbSame= new AtomicInteger();
+        this.personnages.forEach(personnageExistant -> {if(personnageExistant.equals(p)){ nbSame.getAndIncrement();}});
+        if (nbSame.get() <3)
+        {
+            this.personnages.add(p);
+        }
     }
 
     public List<Objectif> getObjectifs() {
@@ -74,4 +83,13 @@ public class Aventure {
     public void addObjectif(Objectif o) {
         this.objectifs.add(o);
     }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
 }

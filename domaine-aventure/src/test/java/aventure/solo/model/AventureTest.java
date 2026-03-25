@@ -108,6 +108,25 @@ class AventureTest {
         Assertions.assertEquals(1, a.getPersonnages().size());
     }
 
+    /**
+     * On peut ajouter le même personnage trois fois au maximum
+     */
+    @Test
+    void testAjoutPersonnage3x()
+    {
+        String nomPersonnage ="Nellie Taly";
+        String descriptionPersonnage = "une femme agée et laide.";
+        String historique = " Elle cherche à se venger du barde Bital Velyn et elle est satisfaite d'avoir récuperer le luth de ce dernier comme vengeance.";
+        Personnage p = new Personnage(nomPersonnage,descriptionPersonnage);
+        p.ajouterHistorique(historique);
+        a.addPersonnage(p);
+        a.addPersonnage(p);
+        a.addPersonnage(p);
+        a.addPersonnage(p);
+        Assertions.assertEquals(3, a.getPersonnages().size());
+        Assertions.assertEquals(p.getName(), a.getPersonnages().getLast().getName());
+    }
+
     @Test
     void testAjoutObjectif()
     {
