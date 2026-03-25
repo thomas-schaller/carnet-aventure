@@ -56,7 +56,7 @@ public class Aventure {
         return scenes;
     }
 
-    public void addScene(Scene scene) {
+    public void ajouterScene(Scene scene) {
         if (!this.scenes.isEmpty()) {
             scene.setNumeroScene(this.scenes.size() + 1);
         }
@@ -67,7 +67,7 @@ public class Aventure {
         return personnages;
     }
 
-    public void addPersonnage(Personnage p) {
+    public void ajouterPersonnage(Personnage p) {
         AtomicInteger nbSame= new AtomicInteger();
         this.personnages.forEach(personnageExistant -> {if(personnageExistant.equals(p)){ nbSame.getAndIncrement();}});
         if (nbSame.get() <3)
@@ -80,7 +80,7 @@ public class Aventure {
         return this.objectifs;
     }
 
-    public void addObjectif(Objectif o) {
+    public void ajouterObjectif(Objectif o) {
         this.objectifs.add(o);
     }
 

@@ -84,12 +84,12 @@ class AventureTest {
     {
         String titreScene= "titre de scene";
         String descriptionScene = "description de la scene";
-        a.addScene (new Scene( titreScene,descriptionScene));
+        a.ajouterScene(new Scene( titreScene,descriptionScene));
         Assertions.assertEquals(1,a.getScenes().size());
         Assertions.assertEquals(titreScene, a.getScenes().getFirst().getTitre());
         Assertions.assertEquals(descriptionScene, a.getScenes().getFirst().getDescription());
         Assertions.assertEquals(1, a.getScenes().getFirst().getNumeroScene());
-        a.addScene (new Scene( titreScene,descriptionScene));
+        a.ajouterScene(new Scene( titreScene,descriptionScene));
         Assertions.assertEquals(2, a.getScenes().getLast().getNumeroScene());
     }
 
@@ -104,7 +104,7 @@ class AventureTest {
         String historique = " Elle cherche à se venger du barde Bital Velyn et elle est satisfaite d'avoir récuperer le luth de ce dernier comme vengeance.";
         Personnage p = new Personnage(nomPersonnage,descriptionPersonnage);
         p.ajouterHistorique(historique);
-        a.addPersonnage(p);
+        a.ajouterPersonnage(p);
         Assertions.assertEquals(1, a.getPersonnages().size());
     }
 
@@ -119,10 +119,10 @@ class AventureTest {
         String historique = " Elle cherche à se venger du barde Bital Velyn et elle est satisfaite d'avoir récuperer le luth de ce dernier comme vengeance.";
         Personnage p = new Personnage(nomPersonnage,descriptionPersonnage);
         p.ajouterHistorique(historique);
-        a.addPersonnage(p);
-        a.addPersonnage(p);
-        a.addPersonnage(p);
-        a.addPersonnage(p);
+        a.ajouterPersonnage(p);
+        a.ajouterPersonnage(p);
+        a.ajouterPersonnage(p);
+        a.ajouterPersonnage(p);
         Assertions.assertEquals(3, a.getPersonnages().size());
         Assertions.assertEquals(p.getName(), a.getPersonnages().getLast().getName());
     }
@@ -131,7 +131,7 @@ class AventureTest {
     void testAjoutObjectif()
     {
         Objectif o = new Objectif("trouver de l'argent");
-        a.addObjectif(o);
+        a.ajouterObjectif(o);
         Assertions.assertEquals(1, a.getObjectifs().size());
     }
 }

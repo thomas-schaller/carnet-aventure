@@ -17,7 +17,7 @@ public class AjoutPersonnageUseCase {
     {
         Aventure aventure = aventureRepository.findById(aventureId)
                 .orElseThrow(() -> new RuntimeException("Aventure non trouvée"));
-        aventure.addPersonnage(personnage);
+        aventure.ajouterPersonnage(personnage);
     }
 
 }

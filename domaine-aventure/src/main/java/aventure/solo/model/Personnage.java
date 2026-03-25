@@ -1,6 +1,7 @@
 package aventure.solo.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Personnage {
@@ -12,7 +13,7 @@ public class Personnage {
     private String description;
 
     //l'historique du personnage dans l'aventure
-    private final ArrayList<String> historique = new ArrayList<>();
+    private final List<String> historique = new ArrayList<>();
     public Personnage(String name, String description) {
         this.name = name;
         this.description = description;
@@ -34,6 +35,9 @@ public class Personnage {
         return String.join("\n", historique);
     }
 
+    public List<String> getAllHistorique() {
+        return historique;
+    }
     public void ajouterHistorique(String event) {
         this.historique.add(event);
     }

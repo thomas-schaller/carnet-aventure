@@ -14,6 +14,9 @@ public class Objectif {
         this.description = description;
     }
 
+    public void setStatut(StatutObjectif statut){
+        this.statut=statut;
+    }
     public String getDescription() {
         return description;
     }

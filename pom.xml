@@ -46,6 +46,13 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-bom</artifactId>
+                <version>2025.1.4</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
                 <groupId>fr.schaller.aventure</groupId>
                 <artifactId>domaine-aventure</artifactId>
                 <version>${project.version}</version>
@@ -59,6 +66,12 @@
                 <groupId>fr.schaller.aventure</groupId>
                 <artifactId>application-aventure</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>3.2.0</version>
+                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

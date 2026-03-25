@@ -17,7 +17,7 @@ public class AjoutObjectifUseCase {
     {
         Aventure aventure = aventureRepository.findById(aventureId)
                 .orElseThrow(() -> new RuntimeException("Aventure non trouvée"));
-        aventure.addObjectif(objectif);
+        aventure.ajouterObjectif(objectif);
     }
 
 }

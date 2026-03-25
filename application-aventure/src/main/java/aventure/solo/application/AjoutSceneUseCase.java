@@ -14,6 +14,6 @@ public class AjoutSceneUseCase {
     {
         Aventure aventure = aventureRepository.findById(aventureId)
                 .orElseThrow(() -> new RuntimeException("Aventure non trouvée"));
-        aventure.addScene(scene);
+        aventure.ajouterScene(scene);
     }
 }
