@@ -8,7 +8,7 @@ import moteur.oracle.port.RandomEventGenerator;
 import java.util.UUID;
 
 /**
- *  cas d'usage : générer un événement
+ *  Cas d'usage : générer un événement
  */
 public class GenererRandomEventUseCase {
 
@@ -16,7 +16,7 @@ public class GenererRandomEventUseCase {
     private final RandomEventGenerator eventGenerator;
 
     public GenererRandomEventUseCase(
-            AventureRepository aventureRepository,
+           AventureRepository aventureRepository,
             RandomEventGenerator eventGenerator
     ) {
         this.aventureRepository = aventureRepository;
@@ -24,19 +24,11 @@ public class GenererRandomEventUseCase {
     }
 
     public RandomEvent execute(UUID aventureId) {
-
         Aventure aventure = aventureRepository.findById(aventureId)
                 .orElseThrow(() -> new RuntimeException("Aventure non trouvée"));
-
-        RandomEvent event = eventGenerator.generate(
+        return eventGenerator.generate(
                 aventure.getObjectifs(),
                 aventure.getPersonnages()
         );
-
-        aventure.getNotes(); // ou ajouter une méthode dédiée
-
-        aventureRepository.save(aventure);
-
-        return event;
     }
 }

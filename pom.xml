@@ -12,7 +12,6 @@
         <module>application-aventure</module>
         <module>infrastructure-aventure</module>
         <module>api-aventure</module>
-        <module>boot-aventure</module>
     </modules>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -45,6 +44,21 @@
                 <version>4.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>fr.schaller.aventure</groupId>
+                <artifactId>domaine-aventure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.schaller.aventure</groupId>
+                <artifactId>infrastructure-aventure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.schaller.aventure</groupId>
+                <artifactId>application-aventure</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

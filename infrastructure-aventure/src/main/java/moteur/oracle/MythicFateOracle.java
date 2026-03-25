@@ -4,9 +4,11 @@ import moteur.oracle.model.FateAnswer;
 import moteur.oracle.model.FateQuestion;
 import moteur.oracle.model.value.Odds;
 import moteur.oracle.port.FateOracle;
+import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
+@Service
 public class MythicFateOracle implements FateOracle {
 
     private final Random random = new Random();
