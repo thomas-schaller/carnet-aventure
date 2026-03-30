@@ -2,8 +2,8 @@ package aventure.solo.application;
 
 import aventure.solo.model.Aventure;
 import aventure.solo.port.AventureRepository;
-import moteur.oracle.model.evenement.RandomEvent;
-import moteur.oracle.port.RandomEventGenerator;
+import aventure.solo.moteur.oracle.model.evenement.RandomEvent;
+import aventure.solo.moteur.oracle.port.RandomEventGenerator;
 
 import java.util.UUID;
 

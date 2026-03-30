@@ -16,8 +16,8 @@ public class SceneController {
         this.useCase = useCase;
     }
 
-    @PostMapping("/${id}/scene")
-    public void ajouterScene(@PathVariable UUID id, @RequestBody Scene scene)
+    @PostMapping("/{id}/scene")
+    public void ajouterScene(@PathVariable("id") UUID id, @RequestBody Scene scene)
     {
         useCase.execute(id,scene);
     }

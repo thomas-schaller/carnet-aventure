@@ -2,9 +2,9 @@ package aventure.solo.application;
 
 import aventure.solo.model.Aventure;
 import aventure.solo.port.AventureRepository;
-import moteur.oracle.model.FateAnswer;
-import moteur.oracle.model.FateQuestion;
-import moteur.oracle.port.FateOracle;
+import aventure.solo.moteur.oracle.model.FateAnswer;
+import aventure.solo.moteur.oracle.model.FateQuestion;
+import aventure.solo.moteur.oracle.port.FateOracle;
 
 import java.util.UUID;
 

@@ -1,0 +1,30 @@
+@startuml
+class Aventure {
+    UUID id
+    String title
+    int chaosFactor
+    void addScene()
+    void addObjectif()
+    void addNPC()
+}
+
+class Scene {
+UUID id
+int number
+}
+
+class Objectif {
+UUID id
+String description
+int progress
+}
+
+class NPC {
+UUID id
+String name
+}
+
+Aventure -- Scene
+Aventure -- Objectif
+Aventure -- NPC
+@enduml

@@ -16,8 +16,8 @@ public class ObjectifController {
         this.useCase = useCase;
     }
 
-    @PostMapping("/${id}/objectif")
-    public void ajouterObjectif(@PathVariable UUID id,@RequestBody Objectif objectif)
+    @PostMapping("/{id}/objectif")
+    public void ajouterObjectif(@PathVariable("id") UUID id,@RequestBody Objectif objectif)
     {
         useCase.execute(id,objectif);
     }

@@ -15,8 +15,8 @@ public class PersonnageController {
         this.usecase = usecase;
     }
 
-    @PostMapping("/${id}/personnage")
-    public void ajouterPersonnage(@PathVariable UUID id, @RequestBody Personnage personnage)
+    @PostMapping("/{id}/personnage")
+    public void ajouterPersonnage(@PathVariable("id") UUID id, @RequestBody Personnage personnage)
     {
         usecase.execute(id,personnage);
     }

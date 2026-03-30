@@ -2,10 +2,10 @@ package aventure.solo.configuration;
 
 
 import aventure.solo.application.*;
-import aventure.solo.model.Objectif;
 import aventure.solo.port.AventureRepository;
-import moteur.oracle.port.FateOracle;
-import moteur.oracle.port.RandomEventGenerator;
+import aventure.solo.moteur.oracle.port.FateOracle;
+import aventure.solo.moteur.oracle.port.RandomEventGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfiguration {
 
     @Bean
-    public GenererRandomEventUseCase genererRandomEventUseCase(AventureRepository aventureRepository,
-                                                               RandomEventGenerator generator) {
+    public GenererRandomEventUseCase genererRandomEventUseCase(@Autowired AventureRepository aventureRepository,
+                                                               @Autowired  RandomEventGenerator generator) {
         return new GenererRandomEventUseCase(aventureRepository,generator);
     }
 
@@ -31,11 +31,16 @@ public class UseCaseConfiguration {
     }
 
     @Bean
-    public AjoutObjectifUseCase ajouterObjectifUseCase(AventureRepository aventureRepository, Objectif objectif)
+    public AjoutObjectifUseCase ajouterObjectifUseCase(AventureRepository aventureRepository)
     {
         return new AjoutObjectifUseCase(aventureRepository);
     }
 
+    @Bean
+    public AjoutSceneUseCase ajoutSceneUseCase(AventureRepository aventureRepository)
+    {
+        return new AjoutSceneUseCase(aventureRepository);
+    }
     @Bean
     public ListerAventureUseCase listerAventureUseCase(AventureRepository aventureRepository)
     {
