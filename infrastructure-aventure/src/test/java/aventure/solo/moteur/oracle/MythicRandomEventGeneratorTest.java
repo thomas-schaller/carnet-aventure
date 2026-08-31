@@ -2,8 +2,9 @@ package aventure.solo.moteur.oracle;
 
 import static org.mockito.Mockito.*;
 
-import aventure.solo.model.Objectif;
-import aventure.solo.model.Personnage;
+import aventure.solo.model.Groupe;
+import aventure.solo.model.Intrigue;
+import aventure.solo.model.PersonnageNonJoueur;
 import aventure.solo.port.WordProvider;
 import aventure.solo.moteur.oracle.model.evenement.RandomEvent;
 import org.junit.jupiter.api.Test;
@@ -30,11 +31,11 @@ class MythicRandomEventGeneratorTest {
         //when(wordController.generate("description2")).thenReturn("travail");
         when(wordProvider.genererMot("action1")).thenReturn("traquer");
         when(wordProvider.genererMot("action2")).thenReturn("detruire");
-        Objectif o = new Objectif("trouver une mission");
-        List<Objectif> lo = new ArrayList<>();
+        Intrigue o = new Intrigue("trouver une mission");
+        List<Intrigue> lo = new ArrayList<>();
         lo.add(o);
-        Personnage p = new Personnage("Gandalf", "un magicien tout de gris vêtu");
-        List<Personnage> lp = new ArrayList<>();
+        PersonnageNonJoueur p = new PersonnageNonJoueur("Gandalf", "un magicien tout de gris vêtu");
+        List<Groupe> lp = new ArrayList<>();
         lp.add(p);
         RandomEvent re =randomGenerator.generate(lo,lp);
         assertEquals("traquer", re.meaning().mot1());

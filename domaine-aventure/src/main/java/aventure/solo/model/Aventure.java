@@ -11,10 +11,10 @@ public class Aventure {
     private UUID id;
     private final String titre;
     private final List<Scene> scenes = new ArrayList<>();
-    private final List<Objectif> objectifs = new ArrayList<>();
-    private final List<Personnage> personnages = new ArrayList<>() ;
+    private final List<Intrigue> intrigues = new ArrayList<>();
+    private final List<Groupe> groupes = new ArrayList<>() ;
     String notes;
-
+    private ChaosFactor chaosFactor;
     public String getNotes() {
         return notes;
     }
@@ -25,15 +25,17 @@ public class Aventure {
 
 
 
-    public Aventure(String titre) {
+    public Aventure(String titre,int valeurChaos) {
+
         this.titre = titre;
+        chaosFactor = new ChaosFactor(valeurChaos);
     }
 
     public String getTitre() {
         return titre;
     }
 
-    ChaosFactor chaosFactor = new ChaosFactor(5);
+
 
     public int getChaosFactor() {
         return chaosFactor.getValeur();
@@ -63,25 +65,25 @@ public class Aventure {
         this.scenes.add(scene);
     }
 
-    public List<Personnage> getPersonnages() {
-        return personnages;
+    public List<Groupe> getGroupes() {
+        return groupes;
     }
 
-    public void ajouterPersonnage(Personnage p) {
+    public void ajouterGroupe(Groupe groupe) {
         AtomicInteger nbSame= new AtomicInteger();
-        this.personnages.forEach(personnageExistant -> {if(personnageExistant.equals(p)){ nbSame.getAndIncrement();}});
+        this.getGroupes().forEach(groupeExistant -> {if(groupeExistant.equals(groupe)){ nbSame.getAndIncrement();}});
         if (nbSame.get() <3)
         {
-            this.personnages.add(p);
+            this.getGroupes().add(groupe);
         }
     }
 
-    public List<Objectif> getObjectifs() {
-        return this.objectifs;
+    public List<Intrigue> getObjectifs() {
+        return this.intrigues;
     }
 
-    public void ajouterObjectif(Objectif o) {
-        this.objectifs.add(o);
+    public void ajouterObjectif(Intrigue o) {
+        this.intrigues.add(o);
     }
 
     public UUID getId() {

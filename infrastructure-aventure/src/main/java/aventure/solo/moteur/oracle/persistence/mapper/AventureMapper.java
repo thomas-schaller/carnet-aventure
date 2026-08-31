@@ -1,13 +1,7 @@
 package aventure.solo.moteur.oracle.persistence.mapper;
 
-import aventure.solo.model.Aventure;
-import aventure.solo.model.Objectif;
-import aventure.solo.model.Personnage;
-import aventure.solo.model.Scene;
-import aventure.solo.moteur.oracle.persistence.entity.AventureEntity;
-import aventure.solo.moteur.oracle.persistence.entity.ObjectifEntity;
-import aventure.solo.moteur.oracle.persistence.entity.PersonnageEntity;
-import aventure.solo.moteur.oracle.persistence.entity.SceneEntity;
+import aventure.solo.model.*;
+import aventure.solo.moteur.oracle.persistence.entity.*;
 
 public class AventureMapper {
     public static AventureEntity toEntity(Aventure aventure) {
@@ -31,29 +25,56 @@ public class AventureMapper {
         );
 
         entity.setPersonnages(
-                aventure.getPersonnages().stream()
-                        .map(p -> toEntity(p, entity))
+                aventure.getGroupes().stream()
+                        .filter(PersonnageNonJoueur.class::isInstance)
+                        .map(PersonnageNonJoueur.class::cast)
+                        .map( p -> toEntity(p, entity))
                         .toList()
         );
 
+        entity.setCommunautes(
+                aventure.getGroupes().stream()
+                        .filter(Communaute.class::isInstance)
+                        .map(Communaute.class::cast)
+                        .map(c -> toEntity(c,entity))
+                        .toList()
+        );
         return entity;
     }
 
-    public static ObjectifEntity toEntity(Objectif objectif, AventureEntity aventureEntity) {
+    public static ObjectifEntity toEntity(Intrigue intrigue, AventureEntity aventureEntity) {
 
         ObjectifEntity entity = new ObjectifEntity();
-        entity.setDescription(objectif.getDescription());
-        entity.setStatut(objectif.getStatut());
+        entity.setDescription(intrigue.getDescription());
+        entity.setStatut(intrigue.getStatut());
         entity.setAventure(aventureEntity);
         return entity;
     }
 
-    public static PersonnageEntity toEntity(Personnage personnage, AventureEntity aventureEntity) {
+    public static PersonnageEntity toEntity(PersonnageNonJoueur personnageNonJoueur, AventureEntity aventureEntity) {
 
         PersonnageEntity entity = new PersonnageEntity();
-        entity.setName(personnage.getName());
-        entity.setDescription(personnage.getDescription());
-        entity.setHistorique(personnage.getAllHistorique());
+        entity.setName(personnageNonJoueur.getNom());
+        entity.setDescription(personnageNonJoueur.getDescription());
+        entity.setHistorique(personnageNonJoueur.getAllHistorique());
+        entity.setAventure(aventureEntity);
+        return entity;
+    }
+
+    public static CommunauteEntity toEntity(Communaute communaute, AventureEntity aventureEntity) {
+
+        CommunauteEntity entity = new CommunauteEntity();
+        entity.setNom(communaute.getNom());
+        entity.setTaille(communaute.getTaille());
+        entity.setCalamiteActuelle(communaute.getCalamiteActuelle());
+        entity.setEstCelebrePour(communaute.getEstCelebrePour());
+        entity.setLieuxInteret(communaute.getLieuxInteret());
+        entity.setTraitsDistinctifs(communaute.getTraitsDistinctifs());
+        entity.setDirigeant(toEntity(communaute.getDirigeant(),null));
+        entity.setIndividusNotables(
+                communaute.getIndividusNotables().stream()
+                        .map( p -> toEntity(p,null)).toList()
+        );
         entity.setAventure(aventureEntity);
         return entity;
     }
@@ -69,7 +90,7 @@ public class AventureMapper {
 
     public static Aventure toDomain(AventureEntity entity) {
 
-        Aventure aventure = new Aventure( entity.getTitre());
+        Aventure aventure = new Aventure( entity.getTitre(), entity.getChaosFactor());
         aventure.setId(entity.getId());
         aventure.setNotes(entity.getNotes());
 
@@ -82,16 +103,16 @@ public class AventureMapper {
         );
 
         entity.getPersonnages().forEach(p ->
-                aventure.ajouterPersonnage(toDomain(p))
+                aventure.ajouterGroupe(toDomain(p))
         );
 
         return aventure;
     }
 
-    public static Objectif toDomain(ObjectifEntity entity) {
-        Objectif objectif = new Objectif(entity.getDescription());
-        objectif.setStatut(entity.getStatut());
-        return objectif;
+    public static Intrigue toDomain(ObjectifEntity entity) {
+        Intrigue intrigue = new Intrigue(entity.getDescription());
+        intrigue.setStatut(entity.getStatut());
+        return intrigue;
     }
 
     public static Scene toDomain(SceneEntity entity) {
@@ -100,10 +121,20 @@ public class AventureMapper {
         return scene;
     }
 
-    public static Personnage toDomain(PersonnageEntity entity){
-        Personnage personnage = new Personnage(entity.getName(), entity.getDescription());
-        entity.getHistorique().forEach(personnage::ajouterHistorique);
-        return personnage;
+    public static PersonnageNonJoueur toDomain(PersonnageEntity entity){
+        PersonnageNonJoueur personnageNonJoueur = new PersonnageNonJoueur(entity.getName(), entity.getDescription());
+        entity.getHistorique().forEach(personnageNonJoueur::ajouterHistorique);
+        return personnageNonJoueur;
+    }
+    public static Communaute toDomain(CommunauteEntity entity){
+        Communaute communaute = new Communaute(entity.getNom(),entity.getTaille());
+        communaute.setTraitsDistinctifs(entity.getTraitsDistinctifs());
+        communaute.setLieuxInteret(entity.getLieuxInteret());
+        communaute.setEstCelebrePour(entity.getEstCelebrePour());
+        communaute.setDirigeant(toDomain(entity.getDirigeant()));
+        entity.getIndividusNotables().forEach(i -> communaute.ajouterIndividuNotable(toDomain(i)));
+        communaute.setCalamiteActuelle(entity.getCalamiteActuelle());
+        return communaute;
     }
 
 }

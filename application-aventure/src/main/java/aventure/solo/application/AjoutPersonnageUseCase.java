@@ -1,7 +1,7 @@
 package aventure.solo.application;
 
 import aventure.solo.model.Aventure;
-import aventure.solo.model.Personnage;
+import aventure.solo.model.Groupe;
 import aventure.solo.port.AventureRepository;
 
 import java.util.UUID;
@@ -13,11 +13,11 @@ public class AjoutPersonnageUseCase {
         this.aventureRepository = aventureRepository;
     }
 
-    public void execute(UUID aventureId, Personnage personnage)
+    public void execute(UUID aventureId, Groupe personnageNonJoueur)
     {
         Aventure aventure = aventureRepository.findById(aventureId)
                 .orElseThrow(() -> new RuntimeException("Aventure non trouvée"));
-        aventure.ajouterPersonnage(personnage);
+        aventure.ajouterGroupe(personnageNonJoueur);
     }
 
 }

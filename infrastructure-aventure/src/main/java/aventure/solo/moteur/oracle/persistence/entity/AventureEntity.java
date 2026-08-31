@@ -1,5 +1,4 @@
 package aventure.solo.moteur.oracle.persistence.entity;
-
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -30,6 +29,9 @@ public class AventureEntity {
 
     @OneToMany(mappedBy = "aventure", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PersonnageEntity> personnages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "aventure", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CommunauteEntity> communautes = new ArrayList<>();
 
     public UUID getId() {
         return id;
@@ -85,5 +87,9 @@ public class AventureEntity {
 
     public void setPersonnages(List<PersonnageEntity> personnages) {
         this.personnages = personnages;
+    }
+
+    public void setCommunautes(List<CommunauteEntity> communautes) {
+        this.communautes = communautes;
     }
 }

@@ -1,6 +1,6 @@
 package aventure.solo.moteur.oracle.persistence.entity;
 
-import aventure.solo.value.StatutObjectif;
+import aventure.solo.value.StatutIntrigue;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -16,7 +16,7 @@ public class ObjectifEntity {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private StatutObjectif statut;
+    private StatutIntrigue statut;
 
     @ManyToOne
     @JoinColumn(name = "aventure_id")
@@ -38,11 +38,11 @@ public class ObjectifEntity {
         this.description = description;
     }
 
-    public StatutObjectif getStatut() {
+    public StatutIntrigue getStatut() {
         return statut;
     }
 
-    public void setStatut(StatutObjectif statut) {
+    public void setStatut(StatutIntrigue statut) {
         this.statut = statut;
     }
 

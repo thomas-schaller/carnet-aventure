@@ -1,5 +1,5 @@
 package aventure.solo.value;
 
-public enum StatutObjectif {
+public enum StatutIntrigue {
     ACTIVE, RESOLVED, FAILED
 }

@@ -1,5 +1,6 @@
 package aventure.solo.model;
 
+import aventure.solo.value.TailleCommunaute;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,8 @@ class AventureTest {
     @BeforeEach
     void initAventure()
     {
-        a = new Aventure(titre);
+        int defaultChaosValue = 5;
+        a = new Aventure(titre, defaultChaosValue);
     }
 
     /**
@@ -21,6 +23,7 @@ class AventureTest {
      * - un facteur de chaos à 5
      * - aucune scene
      * - aucun personnage
+     * - aucune communaute
      * - aucun objectif
     */
     @Test
@@ -28,9 +31,9 @@ class AventureTest {
     {
                Assertions.assertEquals(titre, a.getTitre());
         Assertions.assertEquals(5, a.getChaosFactor());
-        Assertions.assertEquals(0, a.getScenes().size());
-        Assertions.assertEquals(0, a.getPersonnages().size());
-        Assertions.assertEquals(0, a.getObjectifs().size());
+        Assertions.assertTrue(a.getScenes().isEmpty());
+        Assertions.assertTrue(a.getGroupes().isEmpty());
+        Assertions.assertTrue(a.getObjectifs().isEmpty());
     }
 
     // On doit pouvoir diminuer le facteur de chaos de 1.
@@ -48,14 +51,18 @@ class AventureTest {
         Assertions.assertEquals(1, a.getChaosFactor());
     }
 
-    // On doit pouvoir augmenter le facteur de chaos de 1.
+    /** On doit pouvoir augmenter le facteur de chaos de 1.
+     *
+     */
     @Test
     void testAugmenterFacteurChaos() {
         a.augmenterChaos();
         Assertions.assertEquals(6, a.getChaosFactor());
     }
 
-    //  Il n'est pas possible d'avoir un facteur de chaos au dessus de 9;
+    /**  Il n'est pas possible d'avoir un facteur de chaos au dessus de 9;
+     *
+     */
     @Test
     void testMaxValueFacteurChaos()
     {
@@ -63,7 +70,9 @@ class AventureTest {
         Assertions.assertEquals(9, a.getChaosFactor());
     }
 
-    //une note descriptive peut être ajoutée à une aventure
+    /**une note descriptive peut être ajoutée à une aventure
+     *
+     */
     @Test
     void testNotesAventure()
     {
@@ -102,10 +111,10 @@ class AventureTest {
         String nomPersonnage ="Nellie Taly";
         String descriptionPersonnage = "une femme agée et laide.";
         String historique = " Elle cherche à se venger du barde Bital Velyn et elle est satisfaite d'avoir récuperer le luth de ce dernier comme vengeance.";
-        Personnage p = new Personnage(nomPersonnage,descriptionPersonnage);
+        PersonnageNonJoueur p = new PersonnageNonJoueur(nomPersonnage,descriptionPersonnage);
         p.ajouterHistorique(historique);
-        a.ajouterPersonnage(p);
-        Assertions.assertEquals(1, a.getPersonnages().size());
+        a.ajouterGroupe(p);
+        Assertions.assertEquals(1, a.getGroupes().size());
     }
 
     /**
@@ -117,20 +126,33 @@ class AventureTest {
         String nomPersonnage ="Nellie Taly";
         String descriptionPersonnage = "une femme agée et laide.";
         String historique = " Elle cherche à se venger du barde Bital Velyn et elle est satisfaite d'avoir récuperer le luth de ce dernier comme vengeance.";
-        Personnage p = new Personnage(nomPersonnage,descriptionPersonnage);
+        PersonnageNonJoueur p = new PersonnageNonJoueur(nomPersonnage,descriptionPersonnage);
         p.ajouterHistorique(historique);
-        a.ajouterPersonnage(p);
-        a.ajouterPersonnage(p);
-        a.ajouterPersonnage(p);
-        a.ajouterPersonnage(p);
-        Assertions.assertEquals(3, a.getPersonnages().size());
-        Assertions.assertEquals(p.getName(), a.getPersonnages().getLast().getName());
+        a.ajouterGroupe(p);
+        a.ajouterGroupe(p);
+        a.ajouterGroupe(p);
+        a.ajouterGroupe(p);
+        Assertions.assertEquals(3, a.getGroupes().size());
+        Assertions.assertEquals(p.getNom(), a.getGroupes().getLast().getNom());
+    }
+
+    /**
+     * On peut ajouter une communaute
+     */
+    @Test
+    void testAjoutCommunaute()
+    {
+        String nomCommunaute ="Phandalin";
+        TailleCommunaute taille = TailleCommunaute.BOURGADE;
+        Communaute communaute = new Communaute(nomCommunaute,taille);
+        a.ajouterGroupe(communaute);
+        Assertions.assertEquals(1, a.getGroupes().size());
     }
 
     @Test
-    void testAjoutObjectif()
+    void testAjoutIntrigue()
     {
-        Objectif o = new Objectif("trouver de l'argent");
+        Intrigue o = new Intrigue("trouver de l'argent");
         a.ajouterObjectif(o);
         Assertions.assertEquals(1, a.getObjectifs().size());
     }

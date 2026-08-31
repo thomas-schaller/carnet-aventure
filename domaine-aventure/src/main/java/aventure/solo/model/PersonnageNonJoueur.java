@@ -2,26 +2,23 @@ package aventure.solo.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class Personnage {
+/**
+ * Cette classe représente un personnage que peut rencontrer un joueur
+ */
+public class PersonnageNonJoueur extends Groupe{
 
-    // le nom du Personnage
-    private final String name;
 
     // La description physique et mental du personnage
     private String description;
 
     //l'historique du personnage dans l'aventure
     private final List<String> historique = new ArrayList<>();
-    public Personnage(String name, String description) {
-        this.name = name;
+    public PersonnageNonJoueur(String name, String description) {
+        super(name);
         this.description = description;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public String getDescription() {
         return description;
@@ -45,12 +42,11 @@ public class Personnage {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Personnage that = (Personnage) o;
-        return Objects.equals(name, that.name);
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(name);
+        return super.hashCode();
     }
 }

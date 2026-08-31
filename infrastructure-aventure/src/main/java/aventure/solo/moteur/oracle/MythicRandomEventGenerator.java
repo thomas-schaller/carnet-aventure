@@ -1,11 +1,10 @@
 package aventure.solo.moteur.oracle;
 
-import aventure.solo.model.Objectif;
-import aventure.solo.model.Personnage;
+import aventure.solo.model.Groupe;
+import aventure.solo.model.Intrigue;
 import aventure.solo.moteur.oracle.model.evenement.*;
 import aventure.solo.port.WordProvider;
-import aventure.solo.value.StatutObjectif;
-import aventure.solo.moteur.oracle.model.evenement.*;
+import aventure.solo.value.StatutIntrigue;
 import aventure.solo.moteur.oracle.model.value.FocusEvenement;
 import aventure.solo.moteur.oracle.port.RandomEventGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,25 +23,25 @@ public class MythicRandomEventGenerator implements RandomEventGenerator {
     }
 
     @Override
-    public RandomEvent generate(List<Objectif> objectifs, List<Personnage> personnages) {
+    public RandomEvent generate(List<Intrigue> intrigues, List<Groupe> groupes) {
 
         FocusEvenement focus = genererFocus();
         SignificationEvenement signification = genererSignification(focus);
-        CibleEvenement cible = genererCibleEvenement( focus, objectifs, personnages);
+        CibleEvenement cible = genererCibleEvenement( focus, intrigues, groupes);
 
 
         return new RandomEvent(focus, signification,cible);
     }
 
-    private CibleEvenement genererCibleEvenement(FocusEvenement focus, List<Objectif> objectifs, List<Personnage> personnages) {
+    private CibleEvenement genererCibleEvenement(FocusEvenement focus, List<Intrigue> intrigues, List<Groupe> groupes) {
         return switch (focus) {
             case NPC_ACTION,
                  NPC_NEGATIVE,
                  NPC_POSITIVE,
-                 REMOTE_EVENT -> new CiblePersonnage(aleatoirePersonnage(personnages));
+                 REMOTE_EVENT -> new CibleGroupe(aleatoireGroupe(groupes));
             case MOVE_AWAY_FROM_THREAD,
                  MOVE_TOWARD_THREAD,
-                 CLOSE_THREAD -> new CibleObjectif(aleatoireObjectif(objectifs));
+                 CLOSE_THREAD -> new CibleIntrigue(aleatoireObjectif(intrigues));
             default -> new CibleVide();
         };
     }
@@ -82,11 +81,11 @@ public class MythicRandomEventGenerator implements RandomEventGenerator {
         return random.nextInt(100) + 1;
     }
 
-    private Personnage aleatoirePersonnage(List<Personnage> personnages){
-        return personnages.get(random.nextInt(personnages.size()));
+    private Groupe aleatoireGroupe(List<Groupe> groupe){
+        return groupe.get(random.nextInt(groupe.size()));
     }
 
-    private Objectif aleatoireObjectif(List<Objectif> objectifs){
-        return objectifs.stream().filter( o-> o.getStatut() == StatutObjectif.ACTIVE).toList().get(random.nextInt(objectifs.size()));
+    private Intrigue aleatoireObjectif(List<Intrigue> intrigues){
+        return intrigues.stream().filter(o-> o.getStatut() == StatutIntrigue.ACTIVE).toList().get(random.nextInt(intrigues.size()));
     }
 }

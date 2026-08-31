@@ -28,7 +28,7 @@ public class GenererRandomEventUseCase {
                 .orElseThrow(() -> new RuntimeException("Aventure non trouvée"));
         return eventGenerator.generate(
                 aventure.getObjectifs(),
-                aventure.getPersonnages()
+                aventure.getGroupes()
         );
     }
 }

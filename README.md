@@ -9,18 +9,29 @@ Il y a trois aspects à gerer :
 
 Le carnet d'aventure est composé d'une liste de :
 - scènes,
-- objectifs,
-- personnages.
+- intrigues,
+- personnage.
 
 ### Les scenes
 
 Ce sont les différentes scènes constituant l'aventure.
 
-### Les objectifs
-Ce sont les différents objectifs poursuivis par le héros.
+### Les intrigues
+Ce sont les différentes intrigues poursuivies par les personnages joueurs.
+
 
 ### Les Personnages
-Ce sont les personnages connus du héros.
+Il y a deux types de personnages:
+* les personnages joueurs,
+* les personnages non joueurs.
+
+Les joueurs incarnent chacun un ou plusieurs personnages et contrôlent ces derniers, ce sont les personnages joueurs.
+Ces personnages joueurs peuvent rencontrer d'autres personnages durant leurs aventures et peuvent intéragir avec eux. Ce sont les personnages non joueurs.
+
+Il est nécessaire de lister les personnages rencontrés par les personnages joueurs notamment lors de la création d'intrigues ou lors de rencontres.
+
+Un personnage a un nom, une apparence et une personnalité.
+Un personnage joueur 
 
 ## L'oracle
 Il est constitué :

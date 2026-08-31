@@ -21,14 +21,14 @@ public interface AventureMapper {
     @Mapping(target = "notes", source = "notes")
     @Mapping(target = "scenes", source = "scenes")
     @Mapping(target = "objectifs", source = "objectifs")
-    @Mapping(target = "personnages", source = "personnages")
+    @Mapping(target = "personnages", source = "groupes")
     AventureDTO toDTO(Aventure aventure);
 
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "scenes", ignore = true)
     @Mapping(target = "objectifs", ignore = true)
-    @Mapping(target = "personnages", ignore = true)
+    @Mapping(target = "groupes", ignore = true)
     Aventure toDomain(AventureDTO dto);
 
     // ===== UUID mapping =====
@@ -37,9 +37,6 @@ public interface AventureMapper {
         return id != null ? id.toString() : null;
     }
 
-    default UUID map(String id) {
-        return id != null ? UUID.fromString(id) : null;
-    }
 
     // ===== enrichissement DOMAIN =====
 

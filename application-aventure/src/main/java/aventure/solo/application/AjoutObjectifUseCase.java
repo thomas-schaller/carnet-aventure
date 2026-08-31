@@ -1,7 +1,7 @@
 package aventure.solo.application;
 
 import aventure.solo.model.Aventure;
-import aventure.solo.model.Objectif;
+import aventure.solo.model.Intrigue;
 import aventure.solo.port.AventureRepository;
 
 import java.util.UUID;
@@ -13,11 +13,11 @@ public class AjoutObjectifUseCase {
         this.aventureRepository = aventureRepository;
     }
 
-    public void execute(UUID aventureId, Objectif objectif)
+    public void execute(UUID aventureId, Intrigue intrigue)
     {
         Aventure aventure = aventureRepository.findById(aventureId)
                 .orElseThrow(() -> new RuntimeException("Aventure non trouvée"));
-        aventure.ajouterObjectif(objectif);
+        aventure.ajouterObjectif(intrigue);
     }
 
 }

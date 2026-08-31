@@ -5,20 +5,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PersonnageTest {
+class PersonnageNonJoueurTest {
 
     private final String nomPersonnage = "Bital Velyn";
     private final String descriptionPersonnage ="un barde très connu à la côte des épées.";
-    Personnage personnage ;
+    String historique1= "Il cherche un compagnon pour voyager jusqu'à la ville de Baldur.";
+    PersonnageNonJoueur personnageNonJoueur;
     /**
      * A la creation, un personnage a un nom, une description et un historique vide
      */
     @Test
     public void testInitPersonnage()
     {
-        assertEquals(nomPersonnage,personnage.getName());
-        assertEquals(descriptionPersonnage,personnage.getDescription());
-        assertEquals("",personnage.getHistorique());
+        assertEquals(nomPersonnage, personnageNonJoueur.getNom());
+        assertEquals(descriptionPersonnage, personnageNonJoueur.getDescription());
+        assertEquals("", personnageNonJoueur.getHistorique());
     }
 
     /**
@@ -27,25 +28,25 @@ class PersonnageTest {
 
     @Test
     public void testModifierDescription(){
-        String nouvelleDescription = personnage.getDescription()+"Il est jeune et beau.";
-        personnage.setDescription(nouvelleDescription);
-        assertEquals(nouvelleDescription,personnage.getDescription());
+        String nouvelleDescription = personnageNonJoueur.getDescription()+"Il est jeune et beau.";
+        personnageNonJoueur.setDescription(nouvelleDescription);
+        assertEquals(nouvelleDescription, personnageNonJoueur.getDescription());
     }
 
-    /** l'historique du personnage peut changer
+    /** l'historique du personnage peut s'étoffer
      *
      */
     @Test
-    public void testModifierHistorique() {
-        String historique1= "Il cherche un compagnon pour voyager jusqu'à la ville de Baldur.";
+    public void testAjoutHistorique() {
+
         String historique2= "Son luth a été volé par Silas.";
-        personnage.ajouterHistorique(historique1);
-        personnage.ajouterHistorique(historique2);
-        assertEquals(historique1+"\n"+historique2,personnage.getHistorique());
+        personnageNonJoueur.ajouterHistorique(historique2);
+        assertEquals(historique1+"\n"+historique2, personnageNonJoueur.getHistorique());
     }
 
     @BeforeEach
     public void initPersonnage(){
-        personnage = new Personnage(nomPersonnage, descriptionPersonnage);
+        personnageNonJoueur = new PersonnageNonJoueur(nomPersonnage, descriptionPersonnage);
+        personnageNonJoueur.ajouterHistorique(historique1);
     }
 }

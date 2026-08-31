@@ -1,0 +1,34 @@
+@startuml
+class Personnage{
+-String nom
+-String apparence
+-String personnalite
+-String[] historique
+ +getNom() String
+ +getApparence() String
+ +getAllHistorique() String[]
+ +addHistorique(String historique) void
+ +getAlignement() Alignement
+ +getLangues() Langue[]
+}
+
+class PersonnageJoueur
+
+class PersonnageNonJoueur{
+int facteurPuissance
+}
+
+
+enum Alignement {
+String alignement
+}
+
+enum Langue {
+String langue
+}
+Personnage <|--  PersonnageNonJoueur
+Personnage <|-- PersonnageJoueur
+Personnage --> Alignement
+Personnage --> "0..*" Langue
+
+@enduml

@@ -1,12 +1,11 @@
 package aventure.solo.mapper;
 
 import aventure.solo.dto.PersonnageDTO;
-import aventure.solo.model.Personnage;
+import aventure.solo.model.PersonnageNonJoueur;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface PersonnageMapper {
 
-    PersonnageDTO toDTO(Personnage personnage);
-    Personnage toDomain(PersonnageDTO dto);
+    PersonnageNonJoueur toDomain(PersonnageDTO dto);
 }
