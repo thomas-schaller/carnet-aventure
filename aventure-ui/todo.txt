@@ -1,0 +1,31 @@
+(A) 2026-10-02 Implémenter SceneForm.submit() avec validation des champs et appel à AventureStore.addScene() +aventure-ui +scenes @dev
+(A) 2026-10-02 Remplacer le placeholder de SceneCard par le titre, le numéro et la description de la scène +aventure-ui +scenes @dev
+(A) 2026-10-02 Conserver les saisies des formulaires en cas d'échec et les réinitialiser uniquement après confirmation du serveur +aventure-ui +fiabilite @dev
+(A) 2026-10-02 Afficher les erreurs de chargement et de création, ajouter un état d'enregistrement et empêcher les soumissions répétées +aventure-ui +fiabilite @dev
+(B) 2026-10-02 Corriger le test App qui attend encore le titre Hello, aventure-ui +aventure-ui +tests @dev
+(B) 2026-10-02 Fournir un input aventure au test AventureCard avant le rendu +aventure-ui +tests @dev
+(B) 2026-10-02 Fournir ActivatedRoute ou une configuration de routage adaptée au test AventureDetails +aventure-ui +tests @dev
+(B) 2026-10-02 Tester la création d'une aventure réussie et l'échec serveur avec conservation des saisies +aventure-ui +tests @dev
+(B) 2026-10-02 Tester l'ajout d'une scène et son affichage dans l'aventure sélectionnée +aventure-ui +tests @dev
+(B) 2026-10-02 Remplacer l'URL API localhost codée en dur par une configuration par environnement ou une URL relative avec proxy +aventure-ui +api @dev
+(B) 2026-10-02 Valider les échanges réels avec le backend pour le chargement et la création des aventures et des scènes +aventure-ui +api @verification
+(B) 2026-10-02 Distinguer chargement, erreur, aventure inexistante et absence de scènes dans la page de détails +aventure-ui +navigation @dev
+(B) 2026-10-02 Mettre à jour la sélection lorsque le paramètre de route change entre deux aventures +aventure-ui +navigation @dev
+(B) 2026-10-02 Ajouter une route de secours pour les URL inconnues +aventure-ui +navigation @dev
+(B) 2026-10-02 Rendre les cartes d'aventure accessibles au clavier avec un lien de navigation +aventure-ui +accessibilite @dev
+(B) 2026-10-02 Ajouter des labels explicites aux champs et des noms accessibles aux boutons à icône +aventure-ui +accessibilite @dev
+(B) 2026-10-02 Importer la directive ou le module InputText de PrimeNG dans les formulaires utilisant pInputText +aventure-ui +interface @dev
+(B) 2026-10-02 Corriger le script de formatage pour cibler src au lieu de scr +aventure-ui +outillage @dev
+(C) 2026-10-02 Remplacer les paramètres any du store par les types Scene et Personnage +aventure-ui +modeles @dev
+(C) 2026-10-02 Préciser les types de scènes attendue, altérée et d'interruption et les statuts des objectifs dans les modèles +aventure-ui +modeles @dev
+(C) 2026-10-02 Automatiser la compilation et les tests dans une intégration continue +aventure-ui +outillage @dev
+(C) 2026-10-02 Mesurer la contribution des styles globaux au bundle et réduire le chargement initial au regard du budget de 500 ko +aventure-ui +performance @verification
+(C) 2026-10-02 Différer le chargement de la page de détails et de ses composants pour alléger le démarrage +aventure-ui +performance @dev
+(C) 2026-10-02 Permettre la modification et la suppression des aventures et la modification des scènes +aventure-ui +fonctionnalites @dev
+(C) 2026-10-02 Ajouter les écrans de consultation, création et modification des personnages +aventure-ui +personnages @dev
+(C) 2026-10-02 Ajouter les écrans de consultation, création et modification des intrigues +aventure-ui +intrigues @dev
+(C) 2026-10-02 Rendre les entrées du menu navigables vers les écrans disponibles +aventure-ui +navigation @dev
+(C) 2026-10-02 Ajouter le journal des événements d'une scène +aventure-ui +journal @dev
+(C) 2026-10-02 Ajouter le lancer de dés +aventure-ui +outils @dev
+(C) 2026-10-02 Ajouter l'oracle de questions oui ou non +aventure-ui +outils @dev
+(C) 2026-10-02 Ajouter la génération de mots aléatoires décrite dans le README +aventure-ui +outils @dev
