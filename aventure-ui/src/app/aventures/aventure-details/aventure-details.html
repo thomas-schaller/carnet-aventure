@@ -1,0 +1,9 @@
+
+<h1>Scènes :</h1>
+<app-scene-form />
+@for (scene of this.store.selectedAventure()?.scenes; track $index) {
+<app-scene-card [scene]="scene" />
+
+}@empty { 
+        <p>Aucune scène disponible.</p>
+    }

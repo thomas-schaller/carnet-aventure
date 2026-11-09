@@ -1,0 +1,8 @@
+        <p-card class="mb-3">
+            <h2 >Nouvelle scène :</h2>
+             <form (ngSubmit)="submit()">
+                <input type="text" pInputText placeholder="Titre" [formControl]="titre" pSize="large" fluid/>
+                <p-editor type="text" pInputText placeholder="Description" [formControl]="description" [style]="{ height: '320px' }" />
+                <p-button (click)="submit()" icon="pi pi-plus" />
+            </form>
+        </p-card>

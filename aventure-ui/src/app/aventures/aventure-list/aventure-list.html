@@ -1,0 +1,12 @@
+<div class="container">
+    <app-aventure-form />
+    @if (store.loading()) {
+        <p>Chargement...</p>
+    }
+
+    @for (aventure of store.aventures();track aventure.id) {
+        <app-aventure-card [aventure]="aventure" />
+    } @empty { 
+        <p>Aucune aventure disponible.</p>
+    }
+</div>

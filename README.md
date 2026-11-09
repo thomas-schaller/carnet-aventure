@@ -5,7 +5,19 @@ Il y a trois aspects à gerer :
 * l'oracle
 * le carnet d'aventure
 
-## le carnet d'aventure
+## Projet
+
+### serveur
+Le projet coté serveur démarre avec la commande suivante :
+` mvn -pl api-aventure spring-boot:run `
+
+### client
+Le projet coté client se lance ainsi :
+` npm `
+
+## Modèle
+
+### le carnet d'aventure
 
 Le carnet d'aventure est composé d'une liste de :
 - scènes,
