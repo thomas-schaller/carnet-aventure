@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { QuillModule } from 'ngx-quill';
 import { SceneForm } from './scene-form';
 
 describe('SceneForm', () => {
@@ -8,7 +8,7 @@ describe('SceneForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SceneForm],
+      imports: [SceneForm, QuillModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SceneForm);

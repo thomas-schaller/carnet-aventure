@@ -1,8 +1,12 @@
-        <p-card class="mb-3">
+        <mat-card class="mb-3">
             <h2 >Nouvelle scène :</h2>
              <form (ngSubmit)="submit()">
-                <input type="text" pInputText placeholder="Titre" [formControl]="titre" pSize="large" fluid/>
-                <p-editor type="text" pInputText placeholder="Description" [formControl]="description" [style]="{ height: '320px' }" />
-                <p-button (click)="submit()" icon="pi pi-plus" />
+                <mat-form-field>
+                    <mat-label>Titre</mat-label>
+                    <input matInput type="text" [formControl]="titre" />
+                </mat-form-field>
+                <quill-editor type="text" placeholder="Description" [formControl]="description" [style]="{ height: '320px' }" >
+                </quill-editor>
+                <button matButton="filled" type="submit">Soumettre</button>
             </form>
-        </p-card>
+        </mat-card>

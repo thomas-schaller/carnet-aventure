@@ -1,13 +1,14 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { TextareaModule } from 'primeng/textarea';
 import { AventureStore } from '../aventure.store';
-import { Button } from 'primeng/button';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Card } from 'primeng/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-aventure-form',
-  imports: [TextareaModule, Button, ReactiveFormsModule, Card],
+  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './aventure-form.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './aventure-form.scss',

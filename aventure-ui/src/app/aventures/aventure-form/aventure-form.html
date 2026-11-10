@@ -1,7 +1,12 @@
-        <p-card class="mb-3 flex flex-wrap gap-8 justify-center">
-            <h1 class="text-2xl mb-3 ">Nouvelle aventure</h1>
-             <form (ngSubmit)="submit()" class="flex gap-4">
-                <input type="text" pInputText placeholder="Titre" [formControl]="titre" pSize="large" fluid/>
-                <p-button (click)="submit()" icon="pi pi-plus" />
-            </form>
-        </p-card>
+        <mat-card class="mb-3 flex flex-wrap gap-8 justify-center">
+            <mat-card-title><h1 class="text-2xl mb-3 ">Nouvelle aventure</h1></mat-card-title>
+            <mat-card-content>
+                <form (ngSubmit)="submit()" class="flex gap-4">
+                    <mat-form-field>
+                        <mat-label>Titre</mat-label>
+                        <input matInput type="text" [formControl]="titre"/>
+                    </mat-form-field>
+                    <button matButton="filled" type="submit">+</button>
+                </form>
+            </mat-card-content>
+        </mat-card>

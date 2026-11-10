@@ -1,13 +1,14 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Button } from 'primeng/button';
-import { Card } from 'primeng/card';
-import { TextareaModule } from 'primeng/textarea';
-import { EditorModule } from 'primeng/editor';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { QuillModule } from 'ngx-quill';
 
 @Component({
   selector: 'app-scene-form',
-  imports: [TextareaModule, Button, ReactiveFormsModule, Card, EditorModule],
+  imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, QuillModule],
   templateUrl: './scene-form.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './scene-form.scss',

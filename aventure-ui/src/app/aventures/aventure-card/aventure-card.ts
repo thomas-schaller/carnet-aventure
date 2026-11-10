@@ -1,10 +1,10 @@
 import { Component, inject, input, ChangeDetectionStrategy } from '@angular/core';
 import { Aventure } from '../../common/aventure.model';
-import { Card } from 'primeng/card';
 import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-aventure-card',
-  imports: [Card],
+  imports: [MatCardModule],
   templateUrl: './aventure-card.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './aventure-card.scss',

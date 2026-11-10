@@ -57,7 +57,7 @@
        inkscape:transform-center-y="-42.362877" /></g></svg>
         @if ( aventureStore.selectedAventure(); as aventure ) {
             <h1>{{aventure.titre}}</h1>
-            <p-button class="btn btn-ghost" icon="pi pi-times" severity="danger" (click)="reset()" />
+            <button matButton="filled" severity="danger" (click)="reset()" >Quitter</button>
         } @else {
             <h1>Carnet d'aventures</h1>
         }

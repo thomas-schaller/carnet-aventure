@@ -1,10 +1,10 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { Button } from 'primeng/button';
+import { MatButtonModule } from '@angular/material/button';
 import { AventureStore } from '../../aventures/aventure.store';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
-  imports: [Button],
+  imports: [MatButtonModule],
   templateUrl: './navbar.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './navbar.scss',
