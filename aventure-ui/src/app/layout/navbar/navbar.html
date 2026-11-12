@@ -1,7 +1,7 @@
-<header class="p-3 mb-4 navbar-shadow">
-    <div class="container flex justify-content-between align-items-center">
-        <div class="navbar-logo flex gap-2 align-items-center">
-            <svg class="logo"
+<header class="border-b border-emerald-900/60 bg-black/35 px-4 py-3 shadow-lg shadow-black/20 md:px-8">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4">
+        <div class="navbar-logo flex min-w-0 items-center gap-3">
+            <svg class="logo h-12 w-14 shrink-0 text-emerald-300"
    viewBox="0 0 96 69.183563"
    fill="none"
    stroke="currentColor"
@@ -56,10 +56,12 @@
        inkscape:transform-center-x="52.101504"
        inkscape:transform-center-y="-42.362877" /></g></svg>
         @if ( aventureStore.selectedAventure(); as aventure ) {
-            <h1>{{aventure.titre}}</h1>
-            <button matButton="filled" severity="danger" (click)="reset()" >Quitter</button>
+            <h1 class="truncate text-lg font-semibold text-emerald-50 md:text-2xl">{{aventure.titre}}</h1>
+            <button matFab class="shrink-0" (click)="reset()">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
         } @else {
-            <h1>Carnet d'aventures</h1>
+            <h1 class="text-lg font-semibold text-emerald-50 md:text-2xl">Carnet d'aventures</h1>
         }
         </div>
         

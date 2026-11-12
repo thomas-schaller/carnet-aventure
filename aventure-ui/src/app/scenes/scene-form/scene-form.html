@@ -1,12 +1,16 @@
-        <mat-card class="mb-3">
-            <h2 >Nouvelle scène :</h2>
-             <form (ngSubmit)="submit()">
-                <mat-form-field>
+        <mat-card class="gap-4 px-5 py-6 sm:px-8">
+            <h2 class="mb-1 text-center text-2xl font-semibold">Nouvelle scène</h2>
+            <form (ngSubmit)="submit()" class="flex flex-col gap-4">
+                <mat-form-field class="w-full">
                     <mat-label>Titre</mat-label>
                     <input matInput type="text" [formControl]="titre" />
                 </mat-form-field>
-                <quill-editor type="text" placeholder="Description" [formControl]="description" [style]="{ height: '320px' }" >
+                <quill-editor class="block overflow-hidden rounded-xl" placeholder="Description" [modules]="editorModules"
+                    theme="snow" [formControl]="description" [style]="{ height: '320px' }">
                 </quill-editor>
-                <button matButton="filled" type="submit">Soumettre</button>
+                <button matButton="filled" class="self-center" type="submit">
+                    <span class="material-symbols-outlined" aria-hidden="true">add</span>
+                    <span>Ajouter la scène</span>
+                </button>
             </form>
         </mat-card>
