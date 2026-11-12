@@ -1,4 +1,4 @@
-(A) 2026-11-12 Améliorer des styles et des couleurs sur les différents écrans +aventure-ui @dev
+x (A) 2026-11-12 Améliorer des styles et des couleurs sur les différents écrans +aventure-ui @dev
 (A) 2026-10-02 Implémenter SceneForm.submit() avec validation des champs et appel à AventureStore.addScene() +aventure-ui +scenes @dev
 (A) 2026-10-02 Remplacer le placeholder de SceneCard par le titre, le numéro et la description de la scène +aventure-ui +scenes @dev
 (A) 2026-10-02 Conserver les saisies des formulaires en cas d'échec et les réinitialiser uniquement après confirmation du serveur +aventure-ui +fiabilite @dev
