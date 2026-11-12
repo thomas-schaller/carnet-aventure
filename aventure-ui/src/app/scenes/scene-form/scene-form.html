@@ -5,8 +5,11 @@
                     <mat-label>Titre</mat-label>
                     <input matInput type="text" [formControl]="titre" />
                 </mat-form-field>
-                <quill-editor type="text" placeholder="Description" [formControl]="description" [style]="{ height: '320px' }" >
+                <quill-editor placeholder="Description"  [modules]="editorModules" 
+      theme="snow" [formControl]="description" [style]="{ height: '320px' }" >
                 </quill-editor>
-                <button matButton="filled" type="submit">Soumettre</button>
+                <button matButton="filled" (click)="submit()">
+                <span class="material-symbols-outlined" aria-hidden="true">add</span>
+            </button>
             </form>
         </mat-card>

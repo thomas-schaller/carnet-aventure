@@ -1,3 +1,4 @@
+(A) 2026-11-12 Améliorer des styles et des couleurs sur les différents écrans +aventure-ui @dev
 (A) 2026-10-02 Implémenter SceneForm.submit() avec validation des champs et appel à AventureStore.addScene() +aventure-ui +scenes @dev
 (A) 2026-10-02 Remplacer le placeholder de SceneCard par le titre, le numéro et la description de la scène +aventure-ui +scenes @dev
 (A) 2026-10-02 Conserver les saisies des formulaires en cas d'échec et les réinitialiser uniquement après confirmation du serveur +aventure-ui +fiabilite @dev
@@ -14,7 +15,6 @@
 (B) 2026-10-02 Ajouter une route de secours pour les URL inconnues +aventure-ui +navigation @dev
 (B) 2026-10-02 Rendre les cartes d'aventure accessibles au clavier avec un lien de navigation +aventure-ui +accessibilite @dev
 (B) 2026-10-02 Ajouter des labels explicites aux champs et des noms accessibles aux boutons à icône +aventure-ui +accessibilite @dev
-(B) 2026-10-02 Importer la directive ou le module InputText de PrimeNG dans les formulaires utilisant pInputText +aventure-ui +interface @dev
 (B) 2026-10-02 Corriger le script de formatage pour cibler src au lieu de scr +aventure-ui +outillage @dev
 (C) 2026-10-02 Remplacer les paramètres any du store par les types Scene et Personnage +aventure-ui +modeles @dev
 (C) 2026-10-02 Préciser les types de scènes attendue, altérée et d'interruption et les statuts des objectifs dans les modèles +aventure-ui +modeles @dev

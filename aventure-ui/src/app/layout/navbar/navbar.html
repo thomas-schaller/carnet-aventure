@@ -1,6 +1,6 @@
-<header class="p-3 mb-4 navbar-shadow">
-    <div class="container flex justify-content-between align-items-center">
-        <div class="navbar-logo flex gap-2 align-items-center">
+<header class="mb-4 px-4 py-3 shadow-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between">
+        <div class="navbar-logo flex items-center gap-2">
             <svg class="logo"
    viewBox="0 0 96 69.183563"
    fill="none"
@@ -57,7 +57,9 @@
        inkscape:transform-center-y="-42.362877" /></g></svg>
         @if ( aventureStore.selectedAventure(); as aventure ) {
             <h1>{{aventure.titre}}</h1>
-            <button matButton="filled" severity="danger" (click)="reset()" >Quitter</button>
+            <button matButton="filled" (click)="reset()">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
         } @else {
             <h1>Carnet d'aventures</h1>
         }
