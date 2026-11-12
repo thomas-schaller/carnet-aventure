@@ -1,9 +1,9 @@
 
-<h1>Scènes :</h1>
+<h1 class="mb-6 text-center text-3xl font-semibold text-emerald-100">Scènes</h1>
 <app-scene-form />
 @for (scene of this.store.selectedAventure()?.scenes; track $index) {
 <app-scene-card [scene]="scene" />
 
 }@empty { 
-        <p>Aucune scène disponible.</p>
+        <p class="mt-5 rounded-xl border border-dashed border-emerald-900/60 px-5 py-8 text-center text-sm text-emerald-100/60">Aucune scène disponible.</p>
     }

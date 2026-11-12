@@ -1,8 +1,8 @@
 
 <app-navbar />
-<div class="flex gap-4">
-<app-menu />
-<div class="container">
-<router-outlet></router-outlet>
-</div>
+<div class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-10 pt-2 md:flex-row md:items-start md:px-6">
+  <app-menu />
+  <main class="min-w-0 flex-1 space-y-6">
+    <router-outlet />
+  </main>
 </div>

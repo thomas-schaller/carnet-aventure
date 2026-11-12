@@ -1,12 +1,12 @@
-<div class="container">
+<section class="space-y-5">
     <app-aventure-form />
     @if (store.loading()) {
-        <p>Chargement...</p>
+        <p class="py-8 text-center text-sm text-emerald-100/60">Chargement...</p>
     }
 
     @for (aventure of store.aventures();track aventure.id) {
         <app-aventure-card [aventure]="aventure" />
     } @empty { 
-        <p>Aucune aventure disponible.</p>
+        <p class="rounded-xl border border-dashed border-emerald-900/60 px-5 py-8 text-center text-sm text-emerald-100/60">Aucune aventure disponible.</p>
     }
-</div>
+</section>

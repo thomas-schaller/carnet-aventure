@@ -1,4 +1,8 @@
-<mat-card class="mb-3" (click)="selectionAventure()">
-      <mat-card-header> <mat-card-title>{{aventure().titre}}</mat-card-title> </mat-card-header>
-    <mat-card-content>{{aventure().notes}}</mat-card-content>
+<mat-card class="cursor-pointer p-5 transition duration-200 hover:-translate-y-0.5 hover:border-emerald-400/40 hover:shadow-emerald-950/50" (click)="selectionAventure()">
+    <mat-card-header class="justify-center text-center">
+        <mat-card-title class="text-xl font-semibold">{{aventure().titre}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="pt-3 text-center leading-relaxed text-emerald-100/65">
+        {{aventure().notes}}
+    </mat-card-content>
 </mat-card>
