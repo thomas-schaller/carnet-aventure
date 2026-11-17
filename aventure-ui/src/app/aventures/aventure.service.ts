@@ -34,6 +34,16 @@ export class AventureService {
     );
   }
 
+  deleteAventure(id: string) {
+    const url = `${this.baseUrl}/aventure/${id}`;
+    return this.traceExchange(
+      'Suppression d’une aventure',
+      url,
+      undefined,
+      this.httpClient.delete(url),
+    );
+  }
+  
     addObjectif(idAventure: string, description: string) {
     return this.httpClient.post(`${this.baseUrl}/${idAventure}/objectif`, { description });
   }

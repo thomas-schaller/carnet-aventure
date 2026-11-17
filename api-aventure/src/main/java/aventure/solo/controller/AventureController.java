@@ -2,6 +2,7 @@ package aventure.solo.controller;
 
 import aventure.solo.application.CreerAventureUseCase;
 import aventure.solo.application.ListerAventureUseCase;
+import aventure.solo.application.SupprimerAventureUseCase;
 import aventure.solo.dto.AventureDTO;
 import aventure.solo.mapper.AventureMapper;
 import lombok.extern.java.Log;
@@ -17,11 +18,13 @@ import java.util.UUID;
 public class AventureController {
     ListerAventureUseCase listerUseCase;
     CreerAventureUseCase creerUseCase;
+    SupprimerAventureUseCase supprimerUseCase;
     private final AventureMapper mapper;
 
-    public AventureController(ListerAventureUseCase listerUseCase, CreerAventureUseCase creerUseCase,AventureMapper mapper) {
+    public AventureController(ListerAventureUseCase listerUseCase, CreerAventureUseCase creerUseCase,SupprimerAventureUseCase supprimerUseCase, AventureMapper mapper) {
         this.listerUseCase = listerUseCase;
         this.creerUseCase = creerUseCase;
+        this.supprimerUseCase = supprimerUseCase;
         this.mapper=mapper;
     }
 
@@ -35,5 +38,11 @@ public class AventureController {
         List<AventureDTO> result = new ArrayList<>();
         listerUseCase.execute().forEach(a -> result.add(mapper.toDTO(a)));
         return result;
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean supprimerAventure(@PathVariable("id") UUID aventureId){
+        log.warning("suppression de l aventure "+aventureId);
+        return  supprimerUseCase.execute(aventureId);
     }
 }

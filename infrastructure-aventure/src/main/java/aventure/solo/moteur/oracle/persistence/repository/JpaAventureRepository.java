@@ -27,6 +27,13 @@ public class JpaAventureRepository implements AventureRepository {
     }
 
     @Override
+    public boolean delete(UUID id) {
+        boolean result = repo.existsById(id);
+        repo.deleteById(id);
+        return result;
+    }
+
+    @Override
     public UUID save(Aventure aventure) {
         AventureEntity aventureEntity = repo.save(AventureMapper.toEntity(aventure));
         return  aventureEntity.getId();
