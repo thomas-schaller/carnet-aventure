@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Aventure } from '../common/aventure.model';
 import { Scene } from '../common/scene.model';
 import { Personnage } from '../common/personnage.model';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,24 @@ export class AventureService {
   httpClient = inject(HttpClient);
 
   getAventures() {
-    return this.httpClient.get<Aventure[]>(`${this.baseUrl}/aventure/all`)
+    const url = `${this.baseUrl}/aventure/all`;
+    return this.traceExchange(
+      'Chargement des aventures',
+      url,
+      undefined,
+      this.httpClient.get<Aventure[]>(url),
+    );
   }
 
   createAventure(titre:string) {
-    return this.httpClient.post<string>(`${this.baseUrl}/aventure/creer`, { titre });
+    const url = `${this.baseUrl}/aventure/creer`;
+    const body = { titre };
+    return this.traceExchange(
+      'Création d’une aventure',
+      url,
+      body,
+      this.httpClient.post<string>(url, body),
+    );
   }
 
     addObjectif(idAventure: string, description: string) {
@@ -29,7 +43,35 @@ export class AventureService {
   }
 
   addScene(idAventure: string, scene: Scene) {
-    return this.httpClient.post(`${this.baseUrl}/${idAventure}/scene`, scene);
+    const url = `${this.baseUrl}/aventure/${idAventure}/scene`;
+    return this.traceExchange(
+      'Ajout d’une scène',
+      url,
+      scene,
+      this.httpClient.post(url, scene),
+    );
+  }
+
+  private traceExchange<T>(
+    operation: string,
+    url: string,
+    requestBody: unknown,
+    request: Observable<T>,
+  ): Observable<T> {
+    console.info(`[AventureService] ${operation} — requête`, { url, body: requestBody });
+
+    return request.pipe(
+      tap({
+        next: (response) =>
+          console.info(`[AventureService] ${operation} — réponse`, { url, body: response }),
+        error: (error: unknown) =>
+          console.error(`[AventureService] ${operation} — erreur`, {
+            url,
+            requestBody,
+            error,
+          }),
+      }),
+    );
   }
 
 }

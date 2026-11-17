@@ -18,8 +18,19 @@ export class AventureForm {
   private store = inject(AventureStore);
 
   submit() {
-    if (!this.titre.value) return;
-    this.store.createAventure(this.titre.value);
-    this.titre.reset();
+    
+    if (!this.titre.value) {
+      console.warn("[AventureForm] Création ignorée : le titre est vide");
+      return;
+    }
+
+    console.info("[AventureForm] Soumission du formulaire", { titre: this.titre.value });
+    this.store.createAventure(this.titre.value).subscribe({
+      next: (id) => {
+        console.info("[AventureForm] Aventure créée", { id });
+        this.titre.reset();
+      },
+      error: (error) => console.error("Erreur lors de la création de l'aventure", error),
+    });
   }
 }

@@ -1,6 +1,8 @@
 import { Injectable, signal, computed, effect, inject } from '@angular/core';
 import { AventureService } from './aventure.service';
 import { Aventure } from '../common/aventure.model';
+import { Scene } from '../common/scene.model';
+import { tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AventureStore {
@@ -34,8 +36,19 @@ constructor(private service: AventureService) {
       next: (data) => {
         this._aventures.set(data);
         this._loading.set(false);
+        const selectedAventure = data.find((aventure) => aventure.id === this._selectedId());
+        console.info('[AventureStore] Liste des aventures mise à jour', {
+          nombre: data.length,
+          selectedId: this._selectedId(),
+          selectedFound: Boolean(selectedAventure),
+          nombreScenesSelectionnee: selectedAventure?.scenes?.length ?? 0,
+          titresScenesSelectionnee: selectedAventure?.scenes?.map((scene) => scene.titre) ?? [],
+        });
       },
-      error: () => this._loading.set(false)
+      error: (error) => {
+        this._loading.set(false);
+        console.error('[AventureStore] Échec du chargement des aventures', error);
+      }
     });
   }
 
@@ -48,16 +61,26 @@ constructor(private service: AventureService) {
   }
 
   createAventure(titre: string) {
-    this.service.createAventure(titre).subscribe(id => {
-      this.loadAll(); // refresh simple
-      this.select(id); // select the new aventure
-    });
+    return this.service.createAventure(titre).pipe(
+      tap((id) => {
+        console.info('[AventureStore] Identifiant reçu pour la nouvelle aventure', { id });
+        this.select(id);
+        this.loadAll();
+      }),
+    );
   }
 
-  addScene(scene: any) {
-    if (!this._selectedId()) return;
-    this.service.addScene(this._selectedId()!, scene).subscribe(() => {
-      this.loadAll();
+  addScene(scene: Scene) {
+    const aventureId = this._selectedId();
+    if (!aventureId) {
+      console.error("Impossible d'ajouter la scène : aucune aventure n'est sélectionnée");
+      return;
+    }
+
+    console.info('[AventureStore] Envoi d’une scène à l’aventure sélectionnée', { aventureId });
+    this.service.addScene(aventureId, scene).subscribe({
+      next: () => this.loadAll(),
+      error: (error) => console.error("Erreur lors de l'ajout de la scène", error),
     });
   }
 
