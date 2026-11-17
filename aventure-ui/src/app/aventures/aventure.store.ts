@@ -70,6 +70,21 @@ constructor(private service: AventureService) {
     );
   }
 
+  deleteAventure(id: string) {
+    this.service.deleteAventure(id).subscribe({
+      next: () => {
+        console.info('[AventureStore] Aventure supprimée avec succès', { id });
+        if (this._selectedId() === id) {
+          this.resetSelected();
+        }
+        this.loadAll();
+      },
+      error: (error) => {
+        console.error('[AventureStore] Échec de la suppression de l’aventure', { id, error });
+      }
+    });
+  }
+
   addScene(scene: Scene) {
     const aventureId = this._selectedId();
     if (!aventureId) {

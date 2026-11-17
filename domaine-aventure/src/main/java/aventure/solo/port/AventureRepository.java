@@ -9,6 +9,7 @@ import java.util.UUID;
 public interface AventureRepository {
 
     Optional<Aventure> findById(UUID id);
+    boolean delete(UUID id);
     UUID save(Aventure aventure);
     List<Aventure> list();
 }

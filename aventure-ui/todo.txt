@@ -1,7 +1,10 @@
+(A) 2026-11-17 implémenter la suppression d'une aventure @dev
+(A) 2026-11-17 implémenter la suppression d'une scène @dev
 x (A) 2026-11-12 Améliorer des styles et des couleurs sur les différents écrans +aventure-ui @dev
-(A) 2026-10-02 Implémenter SceneForm.submit() avec validation des champs  +aventure-ui +scenes @dev
-x (A) 2026-11-17 ajout de nouvelles scènes avec appel à AventureStore.addScene() +aventure-ui +scenes @dev
-x (A) 2026-10-02 Remplacer le placeholder de SceneCard par le titre, le numéro et la description de la scène +aventure-ui +scenes @dev
+x (A) 2026-11-17 2026-10-02 Implémenter SceneForm.submit()  +aventure-ui +scenes @dev
+(A) 2026-10-02 validation des champs pour le formulaire des scènes  +aventure-ui +scenes @dev
+x (A) 2026-11-17 2026-11-17 ajout de nouvelles scènes avec appel à AventureStore.addScene() +aventure-ui +scenes @dev
+x (A) 2026-11-17 2026-10-02 Remplacer le placeholder de SceneCard par le titre, le numéro et la description de la scène +aventure-ui +scenes @dev
 (A) 2026-10-02 Conserver les saisies des formulaires en cas d'échec et les réinitialiser uniquement après confirmation du serveur +aventure-ui +fiabilite @dev
 (A) 2026-10-02 Afficher les erreurs de chargement et de création, ajouter un état d'enregistrement et empêcher les soumissions répétées +aventure-ui +fiabilite @dev
 (B) 2026-10-02 Corriger le test App qui attend encore le titre Hello, aventure-ui +aventure-ui +tests @dev

@@ -48,6 +48,11 @@ public class UseCaseConfiguration {
     }
 
     @Bean
+    public SupprimerAventureUseCase supprimerAventureUseCase(AventureRepository aventureRepository){
+        return new SupprimerAventureUseCase(aventureRepository);
+    }
+
+    @Bean
     public CreerAventureUseCase creerAventureUseCase(AventureRepository aventureRepository)
     {
         return new CreerAventureUseCase(aventureRepository);
