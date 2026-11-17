@@ -1,12 +1,16 @@
 package aventure.solo.mapper;
 
 import aventure.solo.dto.AventureDTO;
-import aventure.solo.model.Aventure;
+import aventure.solo.dto.ObjectifDTO;
+import aventure.solo.dto.PersonnageDTO;
+import aventure.solo.dto.SceneDTO;
+import aventure.solo.model.*;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
 import java.util.UUID;
 
 @Mapper(
@@ -29,7 +33,22 @@ public interface AventureMapper {
     @Mapping(target = "scenes", ignore = true)
     @Mapping(target = "objectifs", ignore = true)
     @Mapping(target = "groupes", ignore = true)
+    @Mapping(target = "valeurChaos", constant = "5")
     Aventure toDomain(AventureDTO dto);
+
+    // Mappings unitaires vers le domaine (utilisés dans enrichDomain et délégués aux mappers injectés)
+    Scene toDomain(SceneDTO dto);
+
+    Intrigue toDomain(ObjectifDTO dto);
+
+    PersonnageNonJoueur toDomain(PersonnageDTO dto);
+
+    @AfterMapping
+    default void filterPersonnages(@MappingTarget AventureDTO dto) {
+        if (dto.getPersonnages() != null) {
+            dto.setPersonnages(dto.getPersonnages().stream().filter(java.util.Objects::nonNull).toList());
+        }
+    }
 
     // ===== UUID mapping =====
 
@@ -37,31 +56,43 @@ public interface AventureMapper {
         return id != null ? id.toString() : null;
     }
 
+    default UUID map(String id) {
+        return (id != null && !id.isBlank()) ? UUID.fromString(id) : null;
+    }
 
     // ===== enrichissement DOMAIN =====
 
     @AfterMapping
     default void enrichDomain(AventureDTO dto, @MappingTarget Aventure aventure) {
+        if (dto.getId() != null && !dto.getId().isBlank()) {
+            aventure.setId(map(dto.getId()));
+        }
 
         aventure.setNotes(dto.getNotes());
 
         if (dto.getScenes() != null) {
             dto.getScenes().forEach(s -> {
-                // TODO mapper SceneDTO → Scene
-                // aventure.ajouterScene(...)
+                if (s != null) {
+                    aventure.ajouterScene(toDomain(s));
+                }
             });
         }
 
         if (dto.getObjectifs() != null) {
             dto.getObjectifs().forEach(o -> {
-                // aventure.ajouterObjectif(...)
+                if (o != null) {
+                    aventure.ajouterObjectif(toDomain(o));
+                }
             });
         }
 
         if (dto.getPersonnages() != null) {
             dto.getPersonnages().forEach(p -> {
-                // aventure.ajouterPersonnage(...)
+                if (p != null) {
+                    aventure.ajouterGroupe(toDomain(p));
+                }
             });
         }
     }
 }
+

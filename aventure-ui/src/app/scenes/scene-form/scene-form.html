@@ -1,6 +1,6 @@
         <mat-card class="gap-4 px-5 py-6 sm:px-8">
             <h2 class="mb-1 text-center text-2xl font-semibold">Nouvelle scène</h2>
-            <form (ngSubmit)="submit()" class="flex flex-col gap-4">
+            <form (submit)="$event.preventDefault(); submit()" class="flex flex-col gap-4">
                 <mat-form-field class="w-full">
                     <mat-label>Titre</mat-label>
                     <input matInput type="text" [formControl]="titre" />

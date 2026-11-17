@@ -3,6 +3,11 @@ package aventure.solo.moteur.oracle.persistence.mapper;
 import aventure.solo.model.*;
 import aventure.solo.moteur.oracle.persistence.entity.*;
 
+import java.util.ArrayList;
+
+/**
+ * Classe de conversion entre les objets du modele métier et les entités en base de données
+ */
 public class AventureMapper {
     public static AventureEntity toEntity(Aventure aventure) {
 
@@ -12,32 +17,32 @@ public class AventureMapper {
         entity.setChaosFactor(aventure.getChaosFactor());
         entity.setNotes(aventure.getNotes());
 
-        entity.setScenes(
+        entity.setScenes( new ArrayList<>(
                 aventure.getScenes().stream()
                         .map(scene -> toEntity(scene, entity))
-                        .toList()
+                        .toList())
         );
 
-        entity.setObjectifs(
+        entity.setObjectifs(new ArrayList<>(
                 aventure.getObjectifs().stream()
                         .map(o -> toEntity(o, entity))
-                        .toList()
+                        .toList())
         );
 
         entity.setPersonnages(
-                aventure.getGroupes().stream()
+                new ArrayList<>(aventure.getGroupes().stream()
                         .filter(PersonnageNonJoueur.class::isInstance)
                         .map(PersonnageNonJoueur.class::cast)
                         .map( p -> toEntity(p, entity))
-                        .toList()
+                        .toList())
         );
 
         entity.setCommunautes(
-                aventure.getGroupes().stream()
+                new ArrayList<>(aventure.getGroupes().stream()
                         .filter(Communaute.class::isInstance)
                         .map(Communaute.class::cast)
                         .map(c -> toEntity(c,entity))
-                        .toList()
+                        .toList())
         );
         return entity;
     }

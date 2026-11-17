@@ -3,12 +3,14 @@ package aventure.solo.controller;
 import aventure.solo.application.AjoutSceneUseCase;
 import aventure.solo.dto.SceneDTO;
 import aventure.solo.mapper.SceneMapper;
+import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/aventure")
+@Log
 public class SceneController {
 
     AjoutSceneUseCase useCase;
@@ -22,7 +24,7 @@ public class SceneController {
     @PostMapping("/{id}/scene")
     public void ajouterScene(@PathVariable("id") UUID id, @RequestBody SceneDTO scene)
     {
-
+        log.warning(scene.toString());
         useCase.execute(id,mapper.toDomain(scene));
     }
 }

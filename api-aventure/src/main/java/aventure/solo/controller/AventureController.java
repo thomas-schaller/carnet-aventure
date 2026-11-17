@@ -4,6 +4,7 @@ import aventure.solo.application.CreerAventureUseCase;
 import aventure.solo.application.ListerAventureUseCase;
 import aventure.solo.dto.AventureDTO;
 import aventure.solo.mapper.AventureMapper;
+import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/aventure")
+@Log
 public class AventureController {
     ListerAventureUseCase listerUseCase;
     CreerAventureUseCase creerUseCase;

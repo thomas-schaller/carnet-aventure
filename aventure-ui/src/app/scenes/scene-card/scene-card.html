@@ -1,1 +1,9 @@
-<p>scene-card works!</p>
+<mat-card class="mb-4 p-5">
+  <mat-card-header>
+    <mat-card-title>{{ scene().titre }}</mat-card-title>
+    <mat-card-subtitle>Scène {{ scene().numeroScene }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="pt-4">
+    <div [innerHTML]="scene().description"></div>
+  </mat-card-content>
+</mat-card>
